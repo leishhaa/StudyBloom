@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">StudyBloom</string>
+    <string name="tagline">Turn your notes into smarter revision.</string>
+
+    <!-- Bottom Navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_library">Library</string>
+    <string name="nav_progress">Progress</string>
+    <string name="nav_profile">Profile</string>
+
+    <!-- Home Screen -->
+    <string name="greeting_default">Hi, Bloom Scholar 🌸</string>
+    <string name="home_subtitle">Ready for a little revision?</string>
+    <string name="quick_actions_title">Quick Actions ✨</string>
+    <string name="action_upload_notes">Upload Notes</string>
+    <string name="action_upload_notes_desc">Type or import your class notes</string>
+    <string name="action_generate_flashcards">Generate Flashcards</string>
+    <string name="action_generate_flashcards_desc">Turn notes into bite-sized review cards</string>
+    <string name="action_take_quiz">Take a Quiz</string>
+    <string name="action_take_quiz_desc">Test your knowledge with AI questions</string>
+    <string name="stats_overview_title">Your Bloom Stats 🌷</string>
+    <string name="stat_flashcard_sets">Flashcard Sets</string>
+    <string name="stat_quizzes_completed">Quizzes Done</string>
+    <string name="stat_avg_score">Average Score</string>
+
+    <!-- Auth -->
+    <string name="login_title">Welcome Back 🌸</string>
+    <string name="login_subtitle">Let your study journey blossom today</string>
+    <string name="register_title">Join StudyBloom ✨</string>
+    <string name="register_subtitle">Create an account to start smart revising</string>
+    <string name="email_hint">Email address</string>
+    <string name="password_hint">Password</string>
+    <string name="confirm_password_hint">Confirm password</string>
+    <string name="name_hint">Full name</string>
+    <string name="btn_login">Log In 🌸</string>
+    <string name="btn_register">Create Account ✨</string>
+    <string name="prompt_no_account">Don\'t have an account? Sign up</string>
+    <string name="prompt_have_account">Already have an account? Log in</string>
+    <string name="btn_demo_mode">Quick Demo / Offline Mode 🌷</string>
+
+    <!-- Notes Screen -->
+    <string name="notes_title">Study Notes 📝</string>
+    <string name="note_title_hint">Note Title (e.g., Photosynthesis &amp; Energy)</string>
+    <string name="note_subject_hint">Subject (e.g., Biology, History)</string>
+    <string name="note_content_hint">Paste or type your notes here… AI will turn these into flashcards or quizzes! ✨</string>
+    <string name="btn_choose_file">Select .txt File 📁</string>
+    <string name="btn_save_notes">Save Notes 💾</string>
+    <string name="btn_gen_flashcards">Generate Flashcards 🌸</string>
+    <string name="btn_gen_quiz">Generate Quiz ✨</string>
+    <string name="file_selected_prefix">Selected: </string>
+
+    <!-- Flashcards Screen -->
+    <string name="flashcards_title">Flashcards 🎴</string>
+    <string name="tap_to_flip_hint">Tap card to flip answer ✨</string>
+    <string name="btn_previous">◀ Previous</string>
+    <string name="btn_next">Next ▶</string>
+    <string name="btn_knew_this">I knew this 🌸</string>
+    <string name="btn_need_review">Need review 🌷</string>
+    <string name="flashcard_completed_msg">Great job! You\'ve reviewed this entire deck! 🎉</string>
+
+    <!-- Quiz Screen -->
+    <string name="quiz_title">Quiz Revision 🎯</string>
+    <string name="btn_next_question">Next Question ▶</string>
+    <string name="btn_finish_quiz">Submit Quiz ✨</string>
+    <string name="please_select_option">Please select an answer to proceed!</string>
+
+    <!-- Result Screen -->
+    <string name="result_headline">Quiz Complete! 🌷</string>
+    <string name="result_correct">Correct: %1$d</string>
+    <string name="result_incorrect">Incorrect: %1$d</string>
+    <string name="btn_try_again">Try Again 🔄</string>
+    <string name="btn_back_home">Back to Home 🌸</string>
+    <string name="btn_view_progress">View Progress 📊</string>
+
+    <!-- Library Screen -->
+    <string name="library_title">Your Study Library 📚</string>
+    <string name="tab_all">All</string>
+    <string name="tab_notes">Notes</string>
+    <string name="tab_flashcards">Flashcards</string>
+    <string name="tab_quizzes">Quizzes</string>
+    <string name="library_empty">No study items yet!\nUpload notes or generate cards to bloom 🌸</string>
+
+    <!-- Progress Screen -->
+    <string name="progress_title">Progress Dashboard 📊</string>
+    <string name="total_quizzes_label">Total Quizzes</string>
+    <string name="highest_score_label">Highest Score</string>
+    <string name="cards_reviewed_label">Cards Mastered</string>
+    <string name="recent_quizzes_title">Recent Quiz Results ✨</string>
+    <string name="progress_empty">Complete a quiz or review flashcards to see your progress bloom! 🌸</string>
+
+    <!-- Profile Screen -->
+    <string name="profile_title">My Profile 🌸</string>
+    <string name="btn_logout">Log Out</string>
+    <string name="settings_section_title">Preferences &amp; Settings ⚙️</string>
+    <string name="reminder_title">Daily Revision Reminder</string>
+    <string name="reminder_desc">Receive gentle daily study motivation</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_name">Daily Revision Reminders</string>
+    <string name="notification_channel_desc">Daily reminders to review your study notes and flashcards</string>
+    <string name="notification_title">Time for a little revision 🌸</string>
+    <string name="notification_body">A few minutes of flashcards will help your knowledge bloom today! ✨</string>
+
+    <!-- Common / Errors -->
+    <string name="loading_generating_ai">Blooming your study material with AI… 🌸✨</string>
+    <string name="loading_saving">Saving to your cloud library… 💾</string>
+    <string name="err_empty_fields">Please fill in all required fields.</string>
+    <string name="err_empty_notes">Please enter or select some notes first!</string>
+    <string name="err_passwords_mismatch">Passwords do not match.</string>
+    <string name="err_password_too_short">Password must be at least 6 characters.</string>
+</resources>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Pastel Palette -->
+    <color name="bloom_pink_primary">#F06292</color>
+    <color name="bloom_pink_dark">#C2185B</color>
+    <color name="bloom_pink_soft">#F8BBD0</color>
+    <color name="bloom_pink_light">#FCE4EC</color>
+    <color name="bloom_pink_accent">#FF80AB</color>
+
+    <!-- Whimsical Soft Lavender -->
+    <color name="bloom_lavender">#CE93D8</color>
+    <color name="bloom_lavender_light">#F3E5F5</color>
+    <color name="bloom_lavender_subtle">#EDE7F6</color>
+    <color name="bloom_lavender_dark">#8E24AA</color>
+
+    <!-- Warm Cozy Peach & Cream -->
+    <color name="bloom_peach">#FFCC80</color>
+    <color name="bloom_peach_light">#FFE0B2</color>
+    <color name="bloom_peach_soft">#FFF3E0</color>
+    <color name="bloom_cream">#FFFDF9</color>
+    <color name="bloom_surface">#FFFFFF</color>
+
+    <!-- Deep Plum / Dark Mauve for High-Contrast Readable Text -->
+    <color name="bloom_text_primary">#4A154B</color>
+    <color name="bloom_text_secondary">#7B5878</color>
+    <color name="bloom_text_hint">#B49DB2</color>
+    <color name="bloom_divider">#F1E7F2</color>
+    <color name="bloom_card_stroke">#F8BBD0</color>
+
+    <!-- Status & Feedback Accents -->
+    <color name="bloom_correct_green">#66BB6A</color>
+    <color name="bloom_correct_green_light">#E8F5E9</color>
+    <color name="bloom_incorrect_coral">#EF5350</color>
+    <color name="bloom_incorrect_coral_light">#FFEBEE</color>
+    <color name="bloom_star_gold">#FFD54F</color>
+
+    <!-- Card Background Variants for Cute Planner Look -->
+    <color name="bloom_card_pink">#FFF0F5</color>
+    <color name="bloom_card_lavender">#F7F0FA</color>
+    <color name="bloom_card_peach">#FFF8ED</color>
+    <color name="bloom_card_mint">#F1F8F5</color>
+</resources>

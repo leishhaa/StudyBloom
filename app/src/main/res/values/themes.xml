@@ -1,0 +1,72 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.StudyBloom" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/bloom_pink_primary</item>
+        <item name="colorPrimaryVariant">@color/bloom_pink_dark</item>
+        <item name="colorOnPrimary">@color/bloom_surface</item>
+
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/bloom_lavender</item>
+        <item name="colorSecondaryVariant">@color/bloom_lavender_dark</item>
+        <item name="colorOnSecondary">@color/bloom_text_primary</item>
+
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/bloom_cream</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+
+        <!-- Background & Surface -->
+        <item name="android:colorBackground">@color/bloom_cream</item>
+        <item name="colorSurface">@color/bloom_surface</item>
+        <item name="colorOnSurface">@color/bloom_text_primary</item>
+
+        <!-- Text Colors -->
+        <item name="android:textColorPrimary">@color/bloom_text_primary</item>
+        <item name="android:textColorSecondary">@color/bloom_text_secondary</item>
+        <item name="android:textColorHint">@color/bloom_text_hint</item>
+
+        <!-- Default Card View Style -->
+        <item name="cardViewStyle">@style/Widget.StudyBloom.CardView</item>
+    </style>
+
+    <!-- Rounded Cute Card Style -->
+    <style name="Widget.StudyBloom.CardView" parent="CardView">
+        <item name="cardCornerRadius">18dp</item>
+        <item name="cardElevation">2dp</item>
+        <item name="cardBackgroundColor">@color/bloom_surface</item>
+        <item name="contentPadding">0dp</item>
+    </style>
+
+    <!-- Rounded Button Style -->
+    <style name="Widget.StudyBloom.Button.Primary" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/bloom_pink_primary</item>
+        <item name="android:textColor">@color/bloom_surface</item>
+        <item name="cornerRadius">24dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:letterSpacing">0.02</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+    </style>
+
+    <!-- Secondary Lavender Button -->
+    <style name="Widget.StudyBloom.Button.Secondary" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/bloom_lavender</item>
+        <item name="android:textColor">@color/bloom_text_primary</item>
+        <item name="cornerRadius">24dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+    </style>
+
+    <!-- Outlined Button -->
+    <style name="Widget.StudyBloom.Button.Outlined" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">@color/bloom_pink_primary</item>
+        <item name="strokeWidth">1.5dp</item>
+        <item name="android:textColor">@color/bloom_pink_primary</item>
+        <item name="cornerRadius">24dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+</resources>

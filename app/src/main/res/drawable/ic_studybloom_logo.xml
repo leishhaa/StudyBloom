@@ -1,0 +1,55 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="96dp"
+    android:height="96dp"
+    android:viewportWidth="96"
+    android:viewportHeight="96">
+    <!-- Center circle glow -->
+    <path
+        android:fillColor="#FCE4EC"
+        android:pathData="M48,48m-40,0a40,40 0,1 1,80 0a40,40 0,1 1,-80 0" />
+
+    <!-- Top Petal -->
+    <path
+        android:fillColor="#F48FB1"
+        android:pathData="M48,16 C42,26 42,38 48,48 C54,38 54,26 48,16 Z" />
+    <!-- Bottom Petal -->
+    <path
+        android:fillColor="#F48FB1"
+        android:pathData="M48,80 C42,70 42,58 48,48 C54,58 54,70 48,80 Z" />
+    <!-- Left Petal -->
+    <path
+        android:fillColor="#CE93D8"
+        android:pathData="M16,48 C26,42 38,42 48,48 C38,54 26,54 16,48 Z" />
+    <!-- Right Petal -->
+    <path
+        android:fillColor="#CE93D8"
+        android:pathData="M80,48 C70,42 58,42 48,48 C58,54 70,54 80,48 Z" />
+
+    <!-- Diagonal Petals -->
+    <path
+        android:fillColor="#FF80AB"
+        android:pathData="M25,25 C33,35 41,41 48,48 C41,41 35,33 25,25 Z" />
+    <path
+        android:fillColor="#FF80AB"
+        android:pathData="M71,71 C63,61 55,55 48,48 C55,55 61,63 71,71 Z" />
+    <path
+        android:fillColor="#E1BEE7"
+        android:pathData="M71,25 C61,33 55,41 48,48 C55,41 63,33 71,25 Z" />
+    <path
+        android:fillColor="#E1BEE7"
+        android:pathData="M25,71 C35,63 41,55 48,48 C41,55 33,63 25,71 Z" />
+
+    <!-- Flower Center Core -->
+    <path
+        android:fillColor="#FFD54F"
+        android:pathData="M48,48m-11,0a11,11 0,1 1,22 0a11,11 0,1 1,-22 0" />
+
+    <!-- Little Sparkle Star Top Right -->
+    <path
+        android:fillColor="#F06292"
+        android:pathData="M76,20 L78,25 L83,27 L78,29 L76,34 L74,29 L69,27 L74,25 Z" />
+    <!-- Little Sparkle Star Bottom Left -->
+    <path
+        android:fillColor="#BA68C8"
+        android:pathData="M20,68 L22,72 L26,74 L22,76 L20,80 L18,76 L14,74 L18,72 Z" />
+</vector>
