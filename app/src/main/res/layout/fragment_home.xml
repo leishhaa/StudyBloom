@@ -29,7 +29,7 @@
                     android:id="@+id/tvGreeting"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Hi, Bloom Scholar 🌸"
+                    android:text="Hi, Let's Start"
                     android:textColor="@color/bloom_text_primary"
                     android:textSize="22sp"
                     android:textStyle="bold" />
@@ -44,11 +44,6 @@
                     android:textSize="14sp" />
             </LinearLayout>
 
-            <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_studybloom_logo" />
         </LinearLayout>
 
         <!-- Stats Overview Section -->

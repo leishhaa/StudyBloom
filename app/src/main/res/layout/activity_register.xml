@@ -13,13 +13,6 @@
         android:orientation="vertical"
         android:padding="24dp">
 
-        <ImageView
-            android:layout_width="72dp"
-            android:layout_height="72dp"
-            android:layout_marginTop="16dp"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/ic_studybloom_logo" />
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -33,9 +26,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="@string/register_subtitle"
-            android:textColor="@color/bloom_text_secondary"
-            android:textSize="14sp" />
+<!--            android:text="@string/register_subtitle"-->
+<!--            android:textColor="@color/bloom_text_secondary"-->
+<!--            android:textSize="14sp" />-->
 
         <!-- Input Card -->
         <com.google.android.material.card.MaterialCardView
