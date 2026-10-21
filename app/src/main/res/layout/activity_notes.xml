@@ -38,10 +38,10 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <ImageView
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:src="@drawable/ic_sparkles" />
+<!--            <ImageView-->
+<!--                android:layout_width="28dp"-->
+<!--                android:layout_height="28dp"-->
+<!--                android:src="@drawable/ic_sparkles" />-->
         </LinearLayout>
 
         <!-- Note Details Card -->
@@ -65,7 +65,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="6dp"
-                    android:text="Note Title *"
+                    android:text="Note Title"
                     android:textColor="@color/bloom_text_primary"
                     android:textSize="13sp"
                     android:textStyle="bold" />
@@ -86,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="14dp"
                     android:layout_marginBottom="6dp"
-                    android:text="Subject *"
+                    android:text="Subject"
                     android:textColor="@color/bloom_text_primary"
                     android:textSize="13sp"
                     android:textStyle="bold" />
@@ -110,25 +110,25 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btnSelectFile"
-                        style="@style/Widget.StudyBloom.Button.Outlined"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/btn_choose_file"
-                        android:textSize="13sp" />
+<!--                    <com.google.android.material.button.MaterialButton-->
+<!--                        android:id="@+id/btnSelectFile"-->
+<!--                        style="@style/Widget.StudyBloom.Button.Outlined"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="@string/btn_choose_file"-->
+<!--                        android:textSize="13sp" />-->
 
-                    <TextView
-                        android:id="@+id/tvSelectedFile"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_weight="1"
-                        android:ellipsize="middle"
-                        android:maxLines="1"
-                        android:text="No file selected"
-                        android:textColor="@color/bloom_text_secondary"
-                        android:textSize="12sp" />
+<!--                    <TextView-->
+<!--                        android:id="@+id/tvSelectedFile"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="10dp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:ellipsize="middle"-->
+<!--                        android:maxLines="1"-->
+<!--                        android:text="No file selected"-->
+<!--                        android:textColor="@color/bloom_text_secondary"-->
+<!--                        android:textSize="12sp" />-->
                 </LinearLayout>
 
                 <TextView
@@ -136,7 +136,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="6dp"
-                    android:text="Notes Content *"
+                    android:text="Notes Content"
                     android:textColor="@color/bloom_text_primary"
                     android:textSize="13sp"
                     android:textStyle="bold" />

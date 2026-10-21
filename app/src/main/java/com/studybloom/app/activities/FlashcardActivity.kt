@@ -92,19 +92,19 @@ class FlashcardActivity : AppCompatActivity() {
             }
         }
 
-        // "I knew this 🌸" button
+        // "I knew this" button
         binding.btnKnewThis.setOnClickListener {
             cards[currentIndex].isMastered = true
             updateProgress(masteredDelta = 1, reviewDelta = 0)
-            Toast.makeText(this, "Mastered! 🌸 Keep going!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Mastered! Keep going!", Toast.LENGTH_SHORT).show()
             moveToNextCardAuto()
         }
 
-        // "Need review 🌷" button
+        // "Need review" button
         binding.btnNeedReview.setOnClickListener {
             cards[currentIndex].isMastered = false
             updateProgress(masteredDelta = 0, reviewDelta = 1)
-            Toast.makeText(this, "Marked for review 🌷", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Marked for review", Toast.LENGTH_SHORT).show()
             moveToNextCardAuto()
         }
     }
@@ -153,7 +153,7 @@ class FlashcardActivity : AppCompatActivity() {
         val card = cards[currentIndex]
         if (isShowingFront) {
             // Front: Question
-            binding.tvCardSideBadge.text = "QUESTION 🌸"
+            binding.tvCardSideBadge.text = "QUESTION"
             binding.tvCardSideBadge.setTextColor(ContextCompat.getColor(this, R.color.bloom_pink_primary))
             binding.tvCardContent.text = card.question
             binding.tvFlipHint.text = getString(R.string.tap_to_flip_hint)
@@ -161,10 +161,10 @@ class FlashcardActivity : AppCompatActivity() {
             binding.cardFlashcard.setCardBackgroundColor(ContextCompat.getColor(this, R.color.bloom_surface))
         } else {
             // Back: Answer
-            binding.tvCardSideBadge.text = "ANSWER ✨"
+            binding.tvCardSideBadge.text = "ANSWER"
             binding.tvCardSideBadge.setTextColor(ContextCompat.getColor(this, R.color.bloom_lavender_dark))
             binding.tvCardContent.text = card.answer
-            binding.tvFlipHint.text = "Tap to view question 🌸"
+            binding.tvFlipHint.text = "Tap to view question"
             binding.cardFlashcard.strokeColor = ContextCompat.getColor(this, R.color.bloom_lavender)
             binding.cardFlashcard.setCardBackgroundColor(ContextCompat.getColor(this, R.color.bloom_card_lavender))
         }

@@ -13,13 +13,6 @@
         android:orientation="vertical"
         android:padding="24dp">
 
-        <ImageView
-            android:layout_width="84dp"
-            android:layout_height="84dp"
-            android:layout_marginTop="24dp"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/ic_studybloom_logo" />
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -33,11 +26,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:text="@string/login_subtitle"
             android:textColor="@color/bloom_text_secondary"
             android:textSize="14sp" />
 
-        <!-- Card container for inputs -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -127,14 +118,14 @@
             android:textSize="14sp"
             android:textStyle="bold" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnDemoMode"
-            style="@style/Widget.StudyBloom.Button.Secondary"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/btn_demo_mode"
-            android:textSize="14sp" />
+<!--        <com.google.android.material.button.MaterialButton-->
+<!--            android:id="@+id/btnDemoMode"-->
+<!--            style="@style/Widget.StudyBloom.Button.Secondary"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:text="@string/btn_demo_mode"-->
+<!--            android:textSize="14sp" />-->
 
     </LinearLayout>
 </ScrollView>

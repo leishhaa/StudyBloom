@@ -51,7 +51,7 @@ class LoginActivity : AppCompatActivity() {
             prefs.demoUserName = "Bloom Scholar"
             prefs.demoUserEmail = "scholar@studybloom.edu"
 
-            Toast.makeText(this, "Logged in as Bloom Scholar (Demo Mode) 🌸", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Logged in as Bloom Scholar (Demo Mode) ", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
@@ -70,7 +70,7 @@ class LoginActivity : AppCompatActivity() {
 
         val auth = FirebaseService.auth
         if (auth == null) {
-            Toast.makeText(this, "Firebase is not configured yet. Using Demo Mode 🌸", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Firebase is not configured yet. Using Demo Mode ", Toast.LENGTH_LONG).show()
             prefs.isDemoMode = true
             prefs.demoUserName = email.substringBefore("@").replaceFirstChar { it.uppercase() }
             prefs.demoUserEmail = email
@@ -88,7 +88,7 @@ class LoginActivity : AppCompatActivity() {
                 auth.signInWithEmailAndPassword(email, password).await()
                 prefs.isDemoMode = false
 
-                Toast.makeText(this@LoginActivity, "Welcome back! 🌸", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@LoginActivity, "Welcome back! ", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this@LoginActivity, MainActivity::class.java)
                 startActivity(intent)
                 finish()
