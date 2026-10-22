@@ -22,6 +22,7 @@ import kotlinx.coroutines.tasks.await
  * - Form validation (passwords match, min length)
  * - Explicit Intents
  */
+
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegisterBinding
@@ -67,14 +68,7 @@ class RegisterActivity : AppCompatActivity() {
 
         val auth = FirebaseService.auth
         if (auth == null) {
-            // Firebase not configured fallback
-            Toast.makeText(this, "Account created in Demo Mode 🌸", Toast.LENGTH_SHORT).show()
-            prefs.isDemoMode = true
-            prefs.demoUserName = name
-            prefs.demoUserEmail = email
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finishAffinity()
+            Toast.makeText(this, "Authentication service is unavailable. Please check your connection.", Toast.LENGTH_LONG).show()
             return
         }
 
@@ -86,6 +80,12 @@ class RegisterActivity : AppCompatActivity() {
                 val authResult = auth.createUserWithEmailAndPassword(email, password).await()
                 val uid = authResult.user?.uid ?: ""
 
+                // Update Firebase Auth user display name
+                val profileUpdates = com.google.firebase.auth.UserProfileChangeRequest.Builder()
+                    .setDisplayName(name)
+                    .build()
+                authResult.user?.updateProfile(profileUpdates)?.await()
+
                 // 2. Save user profile document to Cloud Firestore
                 val userProfile = UserProfile(
                     uid = uid,
@@ -95,11 +95,7 @@ class RegisterActivity : AppCompatActivity() {
                 )
                 FirebaseService.saveUserProfile(userProfile)
 
-                prefs.isDemoMode = false
-                prefs.demoUserName = name
-                prefs.demoUserEmail = email
-
-                Toast.makeText(this@RegisterActivity, "Welcome to StudyBloom, $name! 🌸", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@RegisterActivity, "Account created for $name.", Toast.LENGTH_LONG).show()
 
                 // 3. Navigate to MainActivity
                 val intent = Intent(this@RegisterActivity, MainActivity::class.java)

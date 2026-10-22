@@ -67,12 +67,12 @@ object FirebaseService {
     }
 
     suspend fun getUserProfile(uid: String): UserProfile? {
-        val db = firestore ?: return UserProfile(uid, "Bloom Scholar", "scholar@studybloom.edu")
+        val db = firestore ?: return UserProfile(uid, "Student", "student@recallify.app")
         return try {
             val doc = db.collection("users").document(uid).get().await()
             doc.toObject(UserProfile::class.java)
         } catch (e: Exception) {
-            UserProfile(uid, "Bloom Scholar", "scholar@studybloom.edu")
+            UserProfile(uid, "Student", "student@recallify.app")
         }
     }
 

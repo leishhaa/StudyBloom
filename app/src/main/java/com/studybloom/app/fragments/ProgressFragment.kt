@@ -1,5 +1,6 @@
 package com.studybloom.app.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.studybloom.app.activities.ResultActivity
 import com.studybloom.app.adapters.RecentQuizAdapter
 import com.studybloom.app.databinding.FragmentProgressBinding
 import com.studybloom.app.services.FirebaseService
@@ -25,7 +27,6 @@ class ProgressFragment : Fragment() {
 
     private var _binding: FragmentProgressBinding? = null
     private val binding get() = _binding!!
-
     private lateinit var recentQuizAdapter: RecentQuizAdapter
 
     override fun onCreateView(
@@ -40,7 +41,19 @@ class ProgressFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        recentQuizAdapter = RecentQuizAdapter(emptyList())
+        recentQuizAdapter = RecentQuizAdapter(emptyList()) { result ->
+            val intent = Intent(requireContext(), ResultActivity::class.java).apply {
+                putExtra(ResultActivity.EXTRA_QUIZ_TITLE, result.quizTitle)
+                putExtra(ResultActivity.EXTRA_QUIZ_ID, result.quizId)
+                putExtra(ResultActivity.EXTRA_SUBJECT, result.subject)
+                putExtra(ResultActivity.EXTRA_SCORE, result.score)
+                putExtra(ResultActivity.EXTRA_TOTAL, result.totalQuestions)
+                putExtra(ResultActivity.EXTRA_PERCENTAGE, result.percentage)
+                putExtra(ResultActivity.EXTRA_CORRECT, result.correctCount)
+                putExtra(ResultActivity.EXTRA_INCORRECT, result.incorrectCount)
+            }
+            startActivity(intent)
+        }
         binding.rvRecentQuizzes.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = recentQuizAdapter
@@ -76,7 +89,7 @@ class ProgressFragment : Fragment() {
                 binding.tvHighestScoreVal.text = "$highestScore%"
                 binding.tvCardsMasteredCount.text = totalCardsMastered.toString()
 
-                // Calculate a whimsical "Bloom Mastery Rate"
+                // Calculate overall mastery rate
                 val masteryRate = if (totalQuizzes > 0 || totalCardsMastered > 0) {
                     ((avgScore * 0.7) + (totalCardsMastered * 3).coerceAtMost(30)).toInt().coerceIn(0, 100)
                 } else {

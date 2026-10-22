@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="Track your knowledge blooming over time 🌷"
+            android:text="Overview of your study activity and test performance."
             android:textColor="@color/bloom_text_secondary"
             android:textSize="14sp" />
 
@@ -217,7 +217,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Bloom Mastery Rate 🌸"
+                        android:text="Overall Mastery"
                         android:textColor="@color/bloom_text_primary"
                         android:textSize="14sp"
                         android:textStyle="bold" />

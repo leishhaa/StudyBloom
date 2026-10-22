@@ -77,7 +77,7 @@ class FlashcardActivity : AppCompatActivity() {
                 isShowingFront = true
                 displayCard(currentIndex)
             } else {
-                Toast.makeText(this, "You are at the first card!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "First card.", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -96,7 +96,7 @@ class FlashcardActivity : AppCompatActivity() {
         binding.btnKnewThis.setOnClickListener {
             cards[currentIndex].isMastered = true
             updateProgress(masteredDelta = 1, reviewDelta = 0)
-            Toast.makeText(this, "Mastered! Keep going!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Marked as mastered.", Toast.LENGTH_SHORT).show()
             moveToNextCardAuto()
         }
 
@@ -104,7 +104,7 @@ class FlashcardActivity : AppCompatActivity() {
         binding.btnNeedReview.setOnClickListener {
             cards[currentIndex].isMastered = false
             updateProgress(masteredDelta = 0, reviewDelta = 1)
-            Toast.makeText(this, "Marked for review", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Marked for review.", Toast.LENGTH_SHORT).show()
             moveToNextCardAuto()
         }
     }

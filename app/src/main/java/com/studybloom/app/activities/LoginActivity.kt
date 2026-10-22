@@ -44,18 +44,6 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
-
-        // Demo Mode for university evaluations / offline usage
-        binding.btnDemoMode.setOnClickListener {
-            prefs.isDemoMode = true
-            prefs.demoUserName = "Bloom Scholar"
-            prefs.demoUserEmail = "scholar@studybloom.edu"
-
-            Toast.makeText(this, "Logged in as Bloom Scholar (Demo Mode) ", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
     }
 
     private fun attemptLogin() {
@@ -70,12 +58,7 @@ class LoginActivity : AppCompatActivity() {
 
         val auth = FirebaseService.auth
         if (auth == null) {
-            Toast.makeText(this, "Firebase is not configured yet. Using Demo Mode ", Toast.LENGTH_LONG).show()
-            prefs.isDemoMode = true
-            prefs.demoUserName = email.substringBefore("@").replaceFirstChar { it.uppercase() }
-            prefs.demoUserEmail = email
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
+            Toast.makeText(this, "Authentication service is unavailable. Please check your connection.", Toast.LENGTH_LONG).show()
             return
         }
 
@@ -86,9 +69,8 @@ class LoginActivity : AppCompatActivity() {
             try {
                 // Firebase Authentication sign in
                 auth.signInWithEmailAndPassword(email, password).await()
-                prefs.isDemoMode = false
 
-                Toast.makeText(this@LoginActivity, "Welcome back! ", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@LoginActivity, "Logged in successfully.", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this@LoginActivity, MainActivity::class.java)
                 startActivity(intent)
                 finish()
@@ -108,6 +90,5 @@ class LoginActivity : AppCompatActivity() {
     private fun setLoading(isLoading: Boolean) {
         binding.progressBarLogin.visibility = if (isLoading) View.VISIBLE else View.GONE
         binding.btnLogin.isEnabled = !isLoading
-        binding.btnDemoMode.isEnabled = !isLoading
     }
 }

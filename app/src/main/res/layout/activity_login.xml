@@ -112,20 +112,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:layout_marginBottom="24dp"
             android:padding="8dp"
             android:text="@string/prompt_no_account"
             android:textColor="@color/bloom_pink_primary"
             android:textSize="14sp"
             android:textStyle="bold" />
-
-<!--        <com.google.android.material.button.MaterialButton-->
-<!--            android:id="@+id/btnDemoMode"-->
-<!--            style="@style/Widget.StudyBloom.Button.Secondary"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="16dp"-->
-<!--            android:text="@string/btn_demo_mode"-->
-<!--            android:textSize="14sp" />-->
 
     </LinearLayout>
 </ScrollView>

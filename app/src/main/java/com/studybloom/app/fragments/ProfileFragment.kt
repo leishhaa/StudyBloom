@@ -11,7 +11,6 @@ import androidx.lifecycle.lifecycleScope
 import com.studybloom.app.activities.LoginActivity
 import com.studybloom.app.databinding.FragmentProfileBinding
 import com.studybloom.app.services.FirebaseService
-import com.studybloom.app.utils.NotificationHelper
 import com.studybloom.app.utils.SharedPrefsHelper
 import kotlinx.coroutines.launch
 
@@ -45,7 +44,6 @@ class ProfileFragment : Fragment() {
         prefs = SharedPrefsHelper(requireContext())
 
         setupProfileHeader()
-        setupSettings()
         setupLogout()
     }
 
@@ -56,38 +54,17 @@ class ProfileFragment : Fragment() {
     }
 
     private fun setupProfileHeader() {
-        val userName = if (prefs.isDemoMode) {
-            prefs.demoUserName
-        } else {
-            FirebaseService.auth?.currentUser?.displayName
-                ?: FirebaseService.auth?.currentUser?.email?.substringBefore("@")
-                ?: prefs.demoUserName
-        }
+        val user = FirebaseService.auth?.currentUser
+        val userName = user?.displayName
+            ?.ifBlank { null }
+            ?: user?.email?.substringBefore("@")
+            ?: "Student"
 
-        val userEmail = if (prefs.isDemoMode) {
-            prefs.demoUserEmail
-        } else {
-            FirebaseService.auth?.currentUser?.email ?: prefs.demoUserEmail
-        }
+        val userEmail = user?.email ?: "student@recallify.app"
 
         binding.tvProfileName.text = userName
         binding.tvProfileEmail.text = userEmail
         binding.tvAvatarInitial.text = userName.take(1).uppercase()
-    }
-
-    private fun setupSettings() {
-        // Daily Reminder Switch setup
-        binding.switchReminder.isChecked = prefs.isDailyReminderEnabled
-        binding.switchReminder.setOnCheckedChangeListener { _, isChecked ->
-            prefs.isDailyReminderEnabled = isChecked
-            if (isChecked) {
-                NotificationHelper.scheduleDailyReminder(requireContext())
-                Toast.makeText(requireContext(), "Daily revision reminder scheduled! 🌸", Toast.LENGTH_SHORT).show()
-            } else {
-                NotificationHelper.cancelDailyReminder(requireContext())
-                Toast.makeText(requireContext(), "Daily reminders paused 🌷", Toast.LENGTH_SHORT).show()
-            }
-        }
     }
 
     private fun loadStudyCounts() {
@@ -112,7 +89,7 @@ class ProfileFragment : Fragment() {
             FirebaseService.auth?.signOut()
             prefs.clearSession()
 
-            Toast.makeText(requireContext(), "Logged out. See you soon! 🌸", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Logged out.", Toast.LENGTH_SHORT).show()
 
             // Navigate back to LoginActivity
             val intent = Intent(requireContext(), LoginActivity::class.java).apply {

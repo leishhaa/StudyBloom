@@ -102,35 +102,6 @@
                     android:textColorHint="@color/bloom_text_hint"
                     android:textSize="15sp" />
 
-                <!-- Quick File Import Option -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-<!--                    <com.google.android.material.button.MaterialButton-->
-<!--                        android:id="@+id/btnSelectFile"-->
-<!--                        style="@style/Widget.StudyBloom.Button.Outlined"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="@string/btn_choose_file"-->
-<!--                        android:textSize="13sp" />-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/tvSelectedFile"-->
-<!--                        android:layout_width="0dp"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginStart="10dp"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:ellipsize="middle"-->
-<!--                        android:maxLines="1"-->
-<!--                        android:text="No file selected"-->
-<!--                        android:textColor="@color/bloom_text_secondary"-->
-<!--                        android:textSize="12sp" />-->
-                </LinearLayout>
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -178,11 +149,12 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Generation & Save Actions -->
+        <!-- Generation Actions -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
+            android:layout_marginBottom="24dp"
             android:orientation="vertical">
 
             <com.google.android.material.button.MaterialButton
@@ -190,27 +162,26 @@
                 style="@style/Widget.StudyBloom.Button.Primary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/btn_gen_flashcards"
+                android:text="@string/btn_generate"
                 android:textSize="15sp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnGenerateQuiz"
-                style="@style/Widget.StudyBloom.Button.Secondary"
+                style="@style/Widget.StudyBloom.Button.Primary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="@string/btn_gen_quiz"
-                android:textSize="15sp" />
+                android:text="@string/btn_start"
+                android:textSize="15sp"
+                android:visibility="gone" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSaveNotes"
                 style="@style/Widget.StudyBloom.Button.Outlined"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="24dp"
                 android:text="@string/btn_save_notes"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:visibility="gone" />
         </LinearLayout>
 
     </LinearLayout>

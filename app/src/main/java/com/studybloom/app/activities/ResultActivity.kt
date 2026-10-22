@@ -75,11 +75,10 @@ class ResultActivity : AppCompatActivity() {
         binding.tvCorrectCount.text = "Correct: $correct"
         binding.tvIncorrectCount.text = "Incorrect: $incorrect"
 
-        // Whimsical motivational messages
         val message = when {
-            percentage >= 80 -> "Blooming brilliantly! You have thoroughly mastered this topic! 🌸✨"
-            percentage >= 50 -> "Growing stronger every day! Keep watering your knowledge and shine! 🌷"
-            else -> "Every seed takes time to sprout! Review flashcards and watch yourself bloom! 🌱🌸"
+            percentage >= 80 -> "Strong performance. You answered most questions correctly."
+            percentage >= 50 -> "Satisfactory score. Review incorrect questions to strengthen understanding."
+            else -> "Additional review recommended. Revisit your study notes and flashcards before reattempting."
         }
         binding.tvMotivationalMessage.text = message
     }

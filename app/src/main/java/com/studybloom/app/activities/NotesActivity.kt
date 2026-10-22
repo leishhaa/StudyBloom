@@ -1,11 +1,9 @@
 package com.studybloom.app.activities
 
-import android.net.Uri
+import android.content.Intent
 import android.os.Bundle
-import android.provider.OpenableColumns
 import android.view.View
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.studybloom.app.R
@@ -15,28 +13,22 @@ import com.studybloom.app.services.AIService
 import com.studybloom.app.services.FirebaseService
 import com.studybloom.app.utils.SharedPrefsHelper
 import kotlinx.coroutines.launch
-import java.io.BufferedReader
-import java.io.InputStreamReader
 
 /**
  * NotesActivity:
- * Allows students to write or import notes, save them to Cloud Firestore & Firebase Storage,
- * and initiate AI generation for Flashcards or Quizzes.
+ * Allows students to write or paste notes, save them to Cloud Firestore,
+ * and generate Flashcards or Quizzes.
  * Demonstrates:
- * - Activity Result API for file picking (Intent.ACTION_GET_CONTENT)
- * - Reading streams from content URIs
- * - Firebase Storage file uploads
- * - Cloud Firestore document creation
- * - Calling AI Service with Kotlin Coroutines
+ * - Cloud Firestore document creation & updates
+ * - Calling AI / Study Generation Service with Kotlin Coroutines
  * - Input validation & progressive UI states
+ * - Explicit Intents
  */
 class NotesActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityNotesBinding
     private lateinit var prefs: SharedPrefsHelper
 
-    private var selectedFileUri: Uri? = null
-    private var selectedFileName: String? = null
     private var existingNoteId: String = ""
 
     companion object {
@@ -44,15 +36,6 @@ class NotesActivity : AppCompatActivity() {
         const val ACTION_GENERATE_FLASHCARDS = "action_flashcards"
         const val ACTION_GENERATE_QUIZ = "action_quiz"
         const val EXTRA_EXISTING_NOTE = "extra_existing_note"
-    }
-
-    // Register File Picker contract for .txt files
-    private val filePickerLauncher = registerForActivityResult(
-        ActivityResultContracts.GetContent()
-    ) { uri: Uri? ->
-        if (uri != null) {
-            handleSelectedFile(uri)
-        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,16 +50,35 @@ class NotesActivity : AppCompatActivity() {
 
         setupListeners()
         checkForExistingNote()
+        configureScreenMode()
+
+        // Focus notes input box if arrived via quick action
+        if (intent.hasExtra(EXTRA_INITIAL_ACTION)) {
+            binding.etNotesContent.requestFocus()
+        }
+    }
+
+    private fun configureScreenMode() {
+        val action = intent.getStringExtra(EXTRA_INITIAL_ACTION)
+        val isQuizMode = action.equals(ACTION_GENERATE_QUIZ, ignoreCase = true) ||
+                action.equals("quiz", ignoreCase = true)
+
+        if (isQuizMode) {
+            binding.btnGenerateFlashcards.visibility = View.GONE
+            binding.btnGenerateQuiz.visibility = View.VISIBLE
+            binding.btnGenerateQuiz.text = getString(R.string.btn_start)
+        } else {
+            // Default to Flashcards mode
+            binding.btnGenerateQuiz.visibility = View.GONE
+            binding.btnGenerateFlashcards.visibility = View.VISIBLE
+            binding.btnGenerateFlashcards.text = getString(R.string.btn_generate)
+        }
+        binding.btnSaveNotes.visibility = View.GONE
     }
 
     private fun setupListeners() {
         binding.btnBack.setOnClickListener {
             finish()
-        }
-
-        binding.btnSelectFile.setOnClickListener {
-            // Launch Android system file picker for plain text files
-            filePickerLauncher.launch("text/*")
         }
 
         binding.btnSaveNotes.setOnClickListener {
@@ -100,70 +102,38 @@ class NotesActivity : AppCompatActivity() {
             binding.etNoteTitle.setText(existingNote.title)
             binding.etSubject.setText(existingNote.subject)
             binding.etNotesContent.setText(existingNote.content)
-            if (!existingNote.fileName.isNullOrBlank()) {
-                binding.tvSelectedFile.text = "${getString(R.string.file_selected_prefix)}${existingNote.fileName}"
-            }
         }
-    }
-
-    /**
-     * Reads the selected .txt file from the device storage into the notes EditText.
-     */
-    private fun handleSelectedFile(uri: Uri) {
-        selectedFileUri = uri
-        selectedFileName = getFileNameFromUri(uri)
-        binding.tvSelectedFile.text = "${getString(R.string.file_selected_prefix)}$selectedFileName"
-
-        try {
-            contentResolver.openInputStream(uri)?.use { inputStream ->
-                BufferedReader(InputStreamReader(inputStream)).use { reader ->
-                    val content = reader.readText()
-                    binding.etNotesContent.setText(content)
-                    if (binding.etNoteTitle.text.isNullOrBlank() && selectedFileName != null) {
-                        val baseName = selectedFileName!!.substringBeforeLast(".")
-                        binding.etNoteTitle.setText(baseName)
-                    }
-                    Toast.makeText(this, "File content loaded! 🌸", Toast.LENGTH_SHORT).show()
-                }
-            }
-        } catch (e: Exception) {
-            Toast.makeText(this, "Failed to read file: ${e.localizedMessage}", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    private fun getFileNameFromUri(uri: Uri): String {
-        var name = "notes.txt"
-        val cursor = contentResolver.query(uri, null, null, null, null)
-        cursor?.use {
-            if (it.moveToFirst()) {
-                val index = it.getColumnIndex(OpenableColumns.DISPLAY_NAME)
-                if (index != -1) {
-                    name = it.getString(index)
-                }
-            }
-        }
-        return name
     }
 
     private fun validateInputs(): Boolean {
-        val title = binding.etNoteTitle.text.toString().trim()
-        val subject = binding.etSubject.text.toString().trim()
         val content = binding.etNotesContent.text.toString().trim()
 
-        if (title.isEmpty()) {
-            Toast.makeText(this, "Please enter a note title.", Toast.LENGTH_SHORT).show()
-            return false
-        }
-        if (subject.isEmpty()) {
-            Toast.makeText(this, "Please enter a subject.", Toast.LENGTH_SHORT).show()
-            return false
-        }
         if (content.isEmpty()) {
-            Toast.makeText(this, "Please enter or import note content.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.err_empty_notes), Toast.LENGTH_SHORT).show()
+            binding.etNotesContent.requestFocus()
             return false
         }
-        // Save subject to SharedPreferences for future use
-        prefs.lastSubject = subject
+
+        var title = binding.etNoteTitle.text.toString().trim()
+        if (title.isEmpty()) {
+            title = content.lines()
+                .firstOrNull { it.isNotBlank() }
+                ?.replace(Regex("^[#*•\\-\\d.\\s]+"), "")
+                ?.take(30)
+                ?.trim()
+                ?.ifBlank { "Study Notes" }
+                ?: "Study Notes"
+            binding.etNoteTitle.setText(title)
+        }
+
+        var subject = binding.etSubject.text.toString().trim()
+        if (subject.isEmpty()) {
+            subject = prefs.lastSubject.ifBlank { "General" }
+            binding.etSubject.setText(subject)
+        } else {
+            prefs.lastSubject = subject
+        }
+
         return true
     }
 
@@ -178,27 +148,19 @@ class NotesActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             try {
-                var fileUrl: String? = null
-                // If a file was selected, upload to Firebase Cloud Storage
-                if (selectedFileUri != null && selectedFileName != null) {
-                    fileUrl = FirebaseService.uploadNoteFile(selectedFileUri!!, selectedFileName!!)
-                }
-
                 val note = Note(
                     id = existingNoteId,
                     userId = FirebaseService.getCurrentUserId(),
                     title = title,
                     subject = subject,
                     content = content,
-                    fileUrl = fileUrl,
-                    fileName = selectedFileName,
                     createdAt = System.currentTimeMillis()
                 )
 
                 val savedId = FirebaseService.saveNote(note)
                 val finalNote = note.copy(id = savedId)
 
-                Toast.makeText(this@NotesActivity, "Notes saved successfully! 💾🌸", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@NotesActivity, "Notes saved successfully.", Toast.LENGTH_SHORT).show()
 
                 onSaved?.invoke(finalNote)
 
@@ -220,7 +182,7 @@ class NotesActivity : AppCompatActivity() {
         val subject = binding.etSubject.text.toString().trim()
         val content = binding.etNotesContent.text.toString().trim()
 
-        setLoading(true, getString(R.string.loading_generating_ai))
+        setLoading(true, getString(R.string.loading_generating_flashcards))
 
         lifecycleScope.launch {
             try {
@@ -235,7 +197,7 @@ class NotesActivity : AppCompatActivity() {
                 )
                 FirebaseService.saveNote(note)
 
-                // Call AI Service
+                // Call AI / Study Service
                 val generatedSet = AIService.generateFlashcards(
                     noteTitle = title,
                     subject = subject,
@@ -248,14 +210,14 @@ class NotesActivity : AppCompatActivity() {
                 val finalSet = generatedSet.copy(id = savedId)
 
                 // Open FlashcardActivity via Explicit Intent
-                val intent = android.content.Intent(this@NotesActivity, FlashcardActivity::class.java).apply {
+                val intent = Intent(this@NotesActivity, FlashcardActivity::class.java).apply {
                     putExtra(FlashcardActivity.EXTRA_FLASHCARD_SET, finalSet)
                 }
                 startActivity(intent)
             } catch (e: Exception) {
                 Toast.makeText(
                     this@NotesActivity,
-                    "AI generation failed: ${e.localizedMessage}. Please try again.",
+                    "Generation failed: ${e.localizedMessage}. Please try again.",
                     Toast.LENGTH_LONG
                 ).show()
             } finally {
@@ -271,7 +233,7 @@ class NotesActivity : AppCompatActivity() {
         val subject = binding.etSubject.text.toString().trim()
         val content = binding.etNotesContent.text.toString().trim()
 
-        setLoading(true, getString(R.string.loading_generating_ai))
+        setLoading(true, getString(R.string.loading_generating_quiz))
 
         lifecycleScope.launch {
             try {
@@ -286,7 +248,7 @@ class NotesActivity : AppCompatActivity() {
                 )
                 FirebaseService.saveNote(note)
 
-                // Call AI Service
+                // Call AI / Study Service
                 val generatedQuiz = AIService.generateQuiz(
                     noteTitle = title,
                     subject = subject,
@@ -299,14 +261,14 @@ class NotesActivity : AppCompatActivity() {
                 val finalQuiz = generatedQuiz.copy(id = savedId)
 
                 // Open QuizActivity via Explicit Intent
-                val intent = android.content.Intent(this@NotesActivity, QuizActivity::class.java).apply {
+                val intent = Intent(this@NotesActivity, QuizActivity::class.java).apply {
                     putExtra(QuizActivity.EXTRA_QUIZ, finalQuiz)
                 }
                 startActivity(intent)
             } catch (e: Exception) {
                 Toast.makeText(
                     this@NotesActivity,
-                    "Quiz generation failed: ${e.localizedMessage}",
+                    "Generation failed: ${e.localizedMessage}. Please try again.",
                     Toast.LENGTH_LONG
                 ).show()
             } finally {
