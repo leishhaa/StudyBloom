@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import com.studybloom.app.R
 import com.studybloom.app.databinding.ActivityMainBinding
 import com.studybloom.app.fragments.HomeFragment
-import com.studybloom.app.fragments.LibraryFragment
 import com.studybloom.app.fragments.ProfileFragment
 import com.studybloom.app.fragments.ProgressFragment
 
@@ -25,7 +24,6 @@ class MainActivity : AppCompatActivity() {
     companion object {
         const val EXTRA_NAV_TARGET = "extra_nav_target"
         const val TARGET_PROGRESS = "target_progress"
-        const val TARGET_LIBRARY = "target_library"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,10 +36,6 @@ class MainActivity : AppCompatActivity() {
             when (menuItem.itemId) {
                 R.id.nav_home -> {
                     loadFragment(HomeFragment())
-                    true
-                }
-                R.id.nav_library -> {
-                    loadFragment(LibraryFragment())
                     true
                 }
                 R.id.nav_progress -> {
@@ -60,8 +54,6 @@ class MainActivity : AppCompatActivity() {
         val target = intent.getStringExtra(EXTRA_NAV_TARGET)
         if (target == TARGET_PROGRESS) {
             binding.bottomNavigation.selectedItemId = R.id.nav_progress
-        } else if (target == TARGET_LIBRARY) {
-            binding.bottomNavigation.selectedItemId = R.id.nav_library
         } else {
             // Default to HomeFragment on first load
             if (savedInstanceState == null) {

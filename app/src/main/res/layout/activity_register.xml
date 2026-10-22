@@ -26,9 +26,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-<!--            android:text="@string/register_subtitle"-->
-<!--            android:textColor="@color/bloom_text_secondary"-->
-<!--            android:textSize="14sp" />-->
+            android:text="@string/register_subtitle"
+            android:textColor="@color/bloom_text_secondary"
+            android:textSize="14sp" />
 
         <!-- Input Card -->
         <com.google.android.material.card.MaterialCardView

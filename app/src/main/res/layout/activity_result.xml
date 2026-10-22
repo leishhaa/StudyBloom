@@ -120,7 +120,7 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                <!-- Motivational Note -->
+                <!-- Summary Note -->
                 <TextView
                     android:id="@+id/tvMotivationalMessage"
                     android:layout_width="match_parent"
@@ -128,7 +128,7 @@
                     android:layout_marginTop="20dp"
                     android:gravity="center"
                     android:lineSpacingExtra="3dp"
-                    android:text="Wonderful! Your understanding is blooming bright! ✨🌸"
+                    android:text="Performance summary"
                     android:textColor="@color/bloom_text_secondary"
                     android:textSize="14sp" />
 

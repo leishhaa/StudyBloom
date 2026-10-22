@@ -9,7 +9,6 @@ import androidx.lifecycle.lifecycleScope
 import com.studybloom.app.R
 import com.studybloom.app.databinding.ActivitySplashBinding
 import com.studybloom.app.services.FirebaseService
-import com.studybloom.app.utils.NotificationHelper
 import com.studybloom.app.utils.SharedPrefsHelper
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -34,9 +33,6 @@ class SplashActivity : AppCompatActivity() {
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Initialize notification channel for daily reminders
-        NotificationHelper.createNotificationChannel(this)
-
         // Run a gentle fade-in animation on the logo and app title
         val fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in)
         binding.llSplashContent.startAnimation(fadeIn)
@@ -48,9 +44,8 @@ class SplashActivity : AppCompatActivity() {
             delay(1500)
 
             val isFirebaseLoggedIn = FirebaseService.isUserLoggedIn()
-            val isDemoLoggedIn = prefs.isDemoMode
 
-            val targetActivity = if (isFirebaseLoggedIn || isDemoLoggedIn) {
+            val targetActivity = if (isFirebaseLoggedIn) {
                 MainActivity::class.java
             } else {
                 LoginActivity::class.java

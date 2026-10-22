@@ -16,10 +16,6 @@ class SharedPrefsHelper(context: Context) {
         private const val PREF_NAME = "studybloom_prefs"
         private const val KEY_ONBOARDING_DONE = "onboarding_done"
         private const val KEY_LAST_SUBJECT = "last_selected_subject"
-        private const val KEY_DAILY_REMINDER = "daily_reminder_enabled"
-        private const val KEY_DEMO_USER_NAME = "demo_user_name"
-        private const val KEY_DEMO_USER_EMAIL = "demo_user_email"
-        private const val KEY_IS_DEMO_MODE = "is_demo_mode"
     }
 
     var isOnboardingDone: Boolean
@@ -30,25 +26,9 @@ class SharedPrefsHelper(context: Context) {
         get() = prefs.getString(KEY_LAST_SUBJECT, "General Science") ?: "General Science"
         set(value) = prefs.edit().putString(KEY_LAST_SUBJECT, value).apply()
 
-    var isDailyReminderEnabled: Boolean
-        get() = prefs.getBoolean(KEY_DAILY_REMINDER, true)
-        set(value) = prefs.edit().putBoolean(KEY_DAILY_REMINDER, value).apply()
-
-    var isDemoMode: Boolean
-        get() = prefs.getBoolean(KEY_IS_DEMO_MODE, false)
-        set(value) = prefs.edit().putBoolean(KEY_IS_DEMO_MODE, value).apply()
-
-    var demoUserName: String
-        get() = prefs.getString(KEY_DEMO_USER_NAME, "Bloom Scholar") ?: "Bloom Scholar"
-        set(value) = prefs.edit().putString(KEY_DEMO_USER_NAME, value).apply()
-
-    var demoUserEmail: String
-        get() = prefs.getString(KEY_DEMO_USER_EMAIL, "scholar@studybloom.edu") ?: "scholar@studybloom.edu"
-        set(value) = prefs.edit().putString(KEY_DEMO_USER_EMAIL, value).apply()
-
     fun clearSession() {
         prefs.edit()
-            .remove(KEY_IS_DEMO_MODE)
+            .remove(KEY_ONBOARDING_DONE)
             .apply()
     }
 }

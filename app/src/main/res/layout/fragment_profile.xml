@@ -37,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="B"
+                android:text="S"
                 android:textColor="@color/bloom_pink_primary"
                 android:textSize="36sp"
                 android:textStyle="bold" />
@@ -48,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="Bloom Scholar"
+            android:text="Student"
             android:textColor="@color/bloom_text_primary"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -58,7 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:text="scholar@studybloom.edu"
+            android:text="student@recallify.app"
             android:textColor="@color/bloom_text_secondary"
             android:textSize="14sp" />
 
@@ -188,61 +188,11 @@
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
-                <!-- Reminder Switch -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_bell" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/reminder_title"
-                            android:textColor="@color/bloom_text_primary"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/reminder_desc"
-                            android:textColor="@color/bloom_text_secondary"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                    <com.google.android.material.switchmaterial.SwitchMaterial
-                        android:id="@+id/switchReminder"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:thumbTint="@color/bloom_pink_primary"
-                        app:trackTint="@color/bloom_pink_soft" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="@color/bloom_divider" />
-
                 <!-- Last Selected Subject -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 

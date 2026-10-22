@@ -53,12 +53,12 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupGreeting() {
-        val userName = if (prefs.isDemoMode) {
-            prefs.demoUserName
-        } else {
-            FirebaseService.auth?.currentUser?.displayName ?: prefs.demoUserName
-        }
-        binding.tvGreeting.text = "Hi, $userName 🌸"
+        val user = FirebaseService.auth?.currentUser
+        val userName = user?.displayName
+            ?.ifBlank { null }
+            ?: user?.email?.substringBefore("@")
+            ?: "Student"
+        binding.tvGreeting.text = "Welcome, $userName"
     }
 
     private fun setupActionListeners() {
@@ -75,12 +75,6 @@ class HomeFragment : Fragment() {
             val intent = Intent(requireContext(), NotesActivity::class.java).apply {
                 putExtra(NotesActivity.EXTRA_INITIAL_ACTION, NotesActivity.ACTION_GENERATE_QUIZ)
             }
-            startActivity(intent)
-        }
-
-        // 3. Upload Notes Card
-        binding.cardActionUpload.setOnClickListener {
-            val intent = Intent(requireContext(), NotesActivity::class.java)
             startActivity(intent)
         }
     }
